@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     private CharacterController controller; // Reference to CharacterController
     private Vector3 motion; // Is the movement offset per frame
 
+	[Header("health")]
+	public int health = 100;
+	public int damage = 20;
 
     private void OnValidate()
     {
@@ -115,4 +118,13 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(SpeedBoost(boost, dashDuration));
     }
+	private void OnTriggerEnter(Collider other)
+
+	{
+		Enemy enemy = other.GetComponent<Enemy>();
+		if (enemy == true)
+		{
+			enemy.TakeDamage(damage);
+		}
+	}
 }
